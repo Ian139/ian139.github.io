@@ -9,6 +9,7 @@
 
 .test {
 	padding: 25vh 40vw;
+	margin: 1vh 0 0;
 	text-align: center;
 	border-radius: 15px;
 	min-height: 250px;
@@ -20,7 +21,12 @@
 	border-style: solid;
 }
 
+.seconds {
+	margin: 0px;
+}
+
 .cps {
+	padding: 0px;
 	margin: auto;
 }
 
@@ -28,8 +34,18 @@
 	margin: auto;
 	display: flex;
 	flex-direction: column;
-	gap: 2.5vw;
+	gap: 1vw;
 	justify-content: space-around;
+	position: relative;
+	align-items: center;
+}
+
+.buttons {
+	margin: 10px;
+	display: flex;
+	flex-direction: row;
+	gap: 2.5vw;
+	justify-content: center;
 	position: relative;
 	align-items: center;
 }
@@ -39,6 +55,18 @@
 	border-color: white;
 	border-style: solid;
 	background-color: white;
+}
+
+.submit {
+	border-radius: 5px;
+	border-color: white;
+	border-style: solid;
+	background-color: white;
+}
+
+.submit:active {
+	border-color: blue;
+	background-color: rgb(141, 206, 255);
 }
 
 .reset:active {
