@@ -5,20 +5,34 @@ let started = false;
 let counter = document.querySelector(".cps");
 let test = document.querySelector(".test");
 let reset = document.querySelector(".reset");
-let timeleft = 10;
+let seconds = document.querySelector(".seconds");
+let scores = [];
+let autoResetTimer;
 
-let resetCPS = counter.setTimeout(notPressed, 5000);
+window.addEventListener("load", () => {
+	test.addEventListener("click", countDown);
+});
 
-let downloadTimer = setInterval(function () {
-	if (timeleft <= 0) {
-		clearInterval(downloadTimer);
-		document.getElementById("countdown").innerHTML = "Finished";
-	} else {
-		document.getElementById("countdown").innerHTML =
-			timeleft + " seconds remaining";
-	}
-	timeleft -= 1;
-}, 1000);
+function countDown() {
+	test.removeEventListener("click", countDown);
+	var timeleft = 10;
+
+	var downTimer = setInterval(function downTime() {
+		seconds.innerHTML = `Time Left: ${timeleft}`;
+
+		timeleft -= 1;
+		if (timeleft <= 0) {
+			clearInterval(downTimer);
+			seconds.innerHTML = "Time is up!";
+			console.log(scores.push(cps));
+			setTimeout(() => {
+				test.addEventListener("click", countDown);
+			}, 2500);
+		}
+	}, 1000);
+
+	console.log(seconds);
+}
 
 setInterval(() => {
 	if (started) {
@@ -42,5 +56,7 @@ test.onclick = function () {
 
 reset.onclick = function () {
 	count = 0;
+	cps = 0;
+	ms = 0;
 	update();
 };
