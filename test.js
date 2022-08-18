@@ -8,6 +8,9 @@ let reset = document.querySelector(".reset");
 let seconds = document.querySelector(".seconds");
 let scores = [];
 let autoResetTimer;
+let storedScores = JSON.parse(localStorage.getItem("scores"));
+let ul = document.querySelector(".scores");
+let li = document.createElement("li");
 
 window.addEventListener("load", () => {
 	test.addEventListener("click", countDown);
@@ -24,7 +27,8 @@ function countDown() {
 		if (timeleft <= 0) {
 			clearInterval(downTimer);
 			seconds.innerHTML = "Time is up!";
-			console.log(scores.push(cps));
+			scores.push(cps);
+			console.log(scores);
 			setTimeout(() => {
 				test.addEventListener("click", countDown);
 			}, 2500);
@@ -60,3 +64,5 @@ reset.onclick = function () {
 	ms = 0;
 	update();
 };
+
+localStorage.setItem("scores", JSON.stringify(scores));
