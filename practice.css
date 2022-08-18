@@ -1,0 +1,53 @@
+#practice {
+    margin: auto auto 50px;
+}
+
+.header {
+    margin: 15vh auto 5vh;
+    text-align: center;
+}
+
+.test {
+    padding: 25vh 40vw;
+    text-align: center;
+    border-radius: 15px;
+    min-height: 250px;
+    background-color: white;
+    color: black;
+    font-size: 5vw;
+    border-width: 5px;
+    border-color: white;
+    border-style: solid;
+}
+
+.cps {
+    margin: auto;
+}
+
+.cps-area {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vw;
+    justify-content: space-around;
+    position: relative;
+    align-items: center;
+}
+
+.reset {
+    border-radius: 5px;
+    border-color: white;
+    border-style: solid;
+    background-color: white;
+}
+
+.reset:active {
+    border-color: blue;
+    background-color: rgb(141, 206, 255);
+}
+
+.test:active {
+    border-style: solid;
+    border-color: blue;
+    background-color: rgb(141, 206, 255);
+}
