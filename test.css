@@ -50,6 +50,13 @@
 	align-items: center;
 }
 
+.clear {
+	border-radius: 5px;
+	border-color: white;
+	border-style: solid;
+	background-color: white;
+}
+
 .reset {
 	border-radius: 5px;
 	border-color: white;

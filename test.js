@@ -1,16 +1,16 @@
 let count = 0;
 let cps = 0;
 let ms = 0;
+let finalScore = 0;
 let started = false;
 let counter = document.querySelector(".cps");
 let test = document.querySelector(".test");
 let reset = document.querySelector(".reset");
+let submit = document.querySelector(".submit");
 let seconds = document.querySelector(".seconds");
-let scores = [];
-let autoResetTimer;
-let storedScores = JSON.parse(localStorage.getItem("scores"));
-let ul = document.querySelector(".scores");
-let li = document.createElement("li");
+let score = document.querySelector(".scores");
+let clear = document.querySelector(".clear");
+//let storedScores = JSON.parse(localStorage.getItem("scores"));
 
 window.addEventListener("load", () => {
 	test.addEventListener("click", countDown);
@@ -18,24 +18,22 @@ window.addEventListener("load", () => {
 
 function countDown() {
 	test.removeEventListener("click", countDown);
-	var timeleft = 10;
+	var timeleft = 2;
 
 	var downTimer = setInterval(function downTime() {
 		seconds.innerHTML = `Time Left: ${timeleft}`;
 
 		timeleft -= 1;
-		if (timeleft <= 0) {
+		if (timeleft < 0) {
 			clearInterval(downTimer);
 			seconds.innerHTML = "Time is up!";
-			scores.push(cps);
-			console.log(scores);
+			finalScore = cps;
+			started = false;
 			setTimeout(() => {
 				test.addEventListener("click", countDown);
 			}, 2500);
 		}
 	}, 1000);
-
-	console.log(seconds);
 }
 
 setInterval(() => {
@@ -49,6 +47,35 @@ setInterval(() => {
 function update() {
 	counter.innerHTML = `CPS: ${cps.toFixed(2)}`;
 }
+
+function save() {
+	let scores;
+	let localScore = localStorage.getItem("score");
+
+	if (localScore === null) {
+		scores = [];
+	} else {
+		scores = JSON.parse(localScore);
+	}
+
+	scores.push(" " + finalScore);
+	scores.sort();
+	scores.reverse();
+
+	localStorage.setItem("score", JSON.stringify(scores));
+}
+
+function view() {
+	let localScore = localStorage.getItem("score");
+	if (localScore != null) {
+		score.innerHTML = JSON.parse(localScore);
+	}
+}
+
+submit.onclick = function () {
+	save();
+	view();
+};
 
 test.onclick = function () {
 	if (!started) {
@@ -65,4 +92,7 @@ reset.onclick = function () {
 	update();
 };
 
-localStorage.setItem("scores", JSON.stringify(scores));
+clear.onclick = function () {
+	localStorage.clear();
+	score.innerHTML = "No Scores";
+};
