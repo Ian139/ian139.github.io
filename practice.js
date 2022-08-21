@@ -9,10 +9,7 @@ let autoResetTimer;
 
 function resetResetTimer() {
 	clearTimeout(autoResetTimer);
-	autoResetTimer = setTimeout(() => {
-		count = 0;
-		update();
-	}, 5000);
+	autoResetTimer = setTimeout(resetTimer, 5000);
 }
 
 setInterval(() => {
@@ -27,6 +24,13 @@ function update() {
 	current.innerHTML = `CPS: ${cps.toFixed(2)}`;
 }
 
+function resetTimer() {
+	count = 0;
+	cps = 0;
+	ms = 0;
+	update();
+}
+
 test.onclick = function () {
 	if (!started) {
 		started = true;
@@ -35,9 +39,4 @@ test.onclick = function () {
 	resetResetTimer();
 };
 
-reset.onclick = function () {
-	count = 0;
-	cps = 0;
-	ms = 0;
-	update();
-};
+reset.onclick = resetTimer;
